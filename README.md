@@ -1,4 +1,4 @@
-converts a pdf to csv either with no user input or manual.
+Converts a pdf to csv either with no user input or with manual selections.
 
 Getting Started
 tbd...
