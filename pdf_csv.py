@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
-# Version 1.0 by Jon Chuma (jchuma@westvancouver.ca) on June 18, 2020
-# Version 1.1 by Jon Chuma on June 20, 2020
+# Version 1.0 by JC on June 18, 2020
+# Version 1.1 by JC on June 20, 2020
 # -----------------------------------------------------------------------------
 
 import os
