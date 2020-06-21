@@ -48,6 +48,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/pimeson48/pdf_csv',
-    version='1.2',
+    version=__version__,
     zip_safe=False,
 )
