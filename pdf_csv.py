@@ -5,7 +5,7 @@
 # Version 1.1 by JC on June 20, 2020
 # Version 1.2 by JC on June 21, 2020
 # -----------------------------------------------------------------------------
-
+__version__ = '1.2'
 
 # -----------------------------------------------------------------------------
 # import required packages that must be done before FUNCTIONS are created
@@ -49,7 +49,7 @@ def pdf_csv():
         pdf_path = os.path.join(pdf_loc, arr_pdf[0])
     else:
         print("[-+-] pdf cannot be found, exiting script!")
-        
+
     # check if csv exists at the default file path
     # if csv does not exist create a blank file at the default path
     # required for automatic script mode to function
