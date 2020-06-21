@@ -20,39 +20,42 @@ print("[-+-] packages imported!")
 # convert pdf to csv
 def pdf_csv():
     print("[-+-] starting pdf_csv.py...")
-    print("[-+-] Purpose: script will import a pdf and convert it to a csv file \n")
+    print("[-+-] script imports a pdf and converts it to a csv \n")
 
+    # TODO allow pdf name selection with minimal interaction
     print("[-+-] default filenames:")
-    pdf = "Bank_Report.pdf"
-    csv = "Bank_Report.csv"
+    filename = "Bank_Report"
+    pdf = filename + ".pdf"
+    csv = filename + ".csv"
     print (pdf)
     print (csv + "\n")
 
     print("[-+-] default directory:")
-    pdf_loc = os.getcwd()
-    csv_loc = pdf_loc
-    print (pdf_loc)
-    print (csv_loc + "\n")
+    print("[-+-] (based on current working directory of python file)")
+    defaultdir = os.getcwd()
+    print (defaultdir + "\n")
 
     print("[-+-] default file paths:")
-    pdf_path = os.path.join(pdf_loc, pdf)
-    csv_path = os.path.join(csv_loc, csv)
+    pdf_path = os.path.join(defaultdir, pdf)
+    csv_path = os.path.join(defaultdir, csv)
     print (pdf_path)
     print (csv_path + "\n")
 
     # check if a pdf exists at the default file path
-    # TO DO create a loop to go through all pdfs and ask for user to select
+    # TODO create a loop to go through all pdfs and ask for user to select
     print("[-+-] looking for another pdf...")
     arr_pdf = [pdf_loc for pdf_loc in os.listdir() if pdf_loc.endswith(".pdf")]
-    if len(arr_pdf) == 1:
+    if len(arr_pdf) == 1: # there has to be only 1 pdf in the directory
         print("[-+-] pdf found: " + arr_pdf[0] + "\n")
         pdf_path = os.path.join(pdf_loc, arr_pdf[0])
+    elif len(arr_pdf) > 1:
+        print("[-+-] more than 1 pdf found, exiting script!")
+        # TODO add option to select from available pdfs
     else:
         print("[-+-] pdf cannot be found, exiting script!")
 
     # check if csv exists at the default file path
     # if csv does not exist create a blank file at the default path
-    # required for automatic script mode to function
     try:
         print("[-+-] checking if csv at default location...")
         open(csv_path, "r")
