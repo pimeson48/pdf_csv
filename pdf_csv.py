@@ -11,7 +11,7 @@ __version__ = '1.2'
 # import required packages that must be done before FUNCTIONS are created
 print("[-+-] importing required packages...")
 import os
-#import tabula  # simple wrapper for tabula-java, read tables from PDF into DataFrame
+import tabula  # simple wrapper for tabula-java, read tables from PDF into DataFrame
 print("[-+-] packages imported!")
 #-----------------------------------------------------------------------------
 
@@ -68,12 +68,15 @@ def pdf_csv():
         print("[-+-] creating a blank csv file: " + csv + "... \n")
         open(csv_path, "w")
 
-#    print ("converting pdf to csv...")
-    print("[-+-] pdf to csv conversion suppressed! \n")
-#    tabula.convert_into(pdf_path, csv_path, output_format="csv", pages="all")
-#    print ("pdf to csv conversion complete!\n")
+    print("converting pdf to csv...")
+#    print("[-+-] pdf to csv conversion suppressed! \n")
+    try:
+        tabula.convert_into(pdf_path, csv_path, output_format="csv", pages="all")
+        print ("pdf to csv conversion complete!\n")
+    except IOError:
+        print("pdf to csv conversion failed!")
 
-#    print("[-+-] converted csv file can be found here: " + csv_path + "\n")
+    print("[-+-] converted csv file can be found here: " + csv_path + "\n")
     
     print("[-+-] finished pdf_csv.py successfully!")
 # -----------------------------------------------------------------------------
