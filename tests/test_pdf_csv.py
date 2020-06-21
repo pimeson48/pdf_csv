@@ -8,7 +8,7 @@ from click.testing import CliRunner
 
 from pdf_csv import pdf_csv
 from pdf_csv import cli
-
+import defaults
 
 class TestPdf_csv(unittest.TestCase):
     """Tests for `pdf_csv` package."""
