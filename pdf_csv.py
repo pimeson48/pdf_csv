@@ -19,12 +19,23 @@ print("[-+-] pdf_csv.py packages imported! \n")
 
 # -----------------------------------------------------------------------------
 def pdf_csv(): # convert pdf to csv
-    dflt = df()
-    pdf = dflt[0] # pdf filename
-    csv = dflt[1] # csv filename
-    defaultdir = dflt[2] # default directory for pdf and csv files
-    pdf_path = dflt[3] # pdf path
-    csv_path = dflt[4] # csv path
+    print("[-+-] default filenames:")
+    filename = "Bank_Report"
+    pdf = filename + ".pdf"
+    csv = filename + ".csv"
+    print (pdf)
+    print (csv + "\n")
+
+    print("[-+-] default directory:")
+    print("[-+-] (based on current working directory of python file)")
+    defaultdir = os.getcwd()
+    print (defaultdir + "\n")
+
+    print("[-+-] default file paths:")
+    pdf_path = os.path.join(defaultdir, pdf)
+    csv_path = os.path.join(defaultdir, csv)
+    print (pdf_path)
+    print (csv_path + "\n")
 
     print("[-+-] looking for default pdf...")
     if os.path.exists(pdf_path) == True: # check if the default pdf exists
