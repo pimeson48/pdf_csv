@@ -133,7 +133,7 @@ def pdf_exists(pdf_path):
 
 
 #-----------------------------------------------------------------------------
-#import required packages
+# import required packages
 print("importing remaining required packages...")
 import os
 import tkinter as tk
