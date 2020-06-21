@@ -5,7 +5,7 @@
 # Version 1.1 by JC on June 20, 2020
 # Version 1.2 by JC on June 21, 2020
 # -----------------------------------------------------------------------------
-__version__ = '1.2'
+__version__
 
 print("[-+-] starting pdf_csv.py...")
 print("[-+-] import a pdf and convert it to a csv")
