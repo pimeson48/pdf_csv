@@ -43,7 +43,7 @@ setup(
     include_package_data=True,
     keywords='pdf_csv',
     name='pdf_csv',
-    packages=find_packages(include=['pdf_csv', 'pdf_csv.*', 'defaults']),
+    packages=find_packages(include=['pdf_csv', 'pdf_csv.*']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
