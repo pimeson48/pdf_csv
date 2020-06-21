@@ -13,7 +13,7 @@ print("[-+-] defaults.py packages imported!")
 #-----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-def defaults(): # set defaults for pdf_csv.py
+def df(): # set defaults for pdf_csv.py
     print("[-+-] default filenames:")
     filename = "Bank_Report"
     pdf = filename + ".pdf"
