@@ -13,13 +13,13 @@ print("[-+-] import a pdf and convert it to a csv")
 print("[-+-] importing required packages for pdf_csv.py...")
 import os
 import tabula  # simple wrapper for tabula-java, read tables from PDF into csv
-import defaults
+from modules.defaults import defaults # local module
 print("[-+-] pdf_csv.py packages imported! \n")
 #-----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
 def pdf_csv(): # convert pdf to csv
-    dflt = defaults.defaults()
+    dflt = defaults()
     pdf = dflt[0] # pdf filename
     csv = dflt[1] # csv filename
     defaultdir = dflt[2] # default directory for pdf and csv files
