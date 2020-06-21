@@ -1,10 +1,8 @@
-# pdf_csv.py | converts a pdf to a csv
+# defaults.py | set defaults for pdf_csv.py
 #
-# Version 1.0 by JC on June 18, 2020
-# Version 1.1 by JC on June 20, 2020
-# Version 1.2 by JC on June 21, 2020
+# Version 1.0 by JC on June 21, 2020
 # -----------------------------------------------------------------------------
-__version__ = '1.2'
+__version__ = '1.0'
 
 print("[-+-] starting defaults.py...")
 print("[-+-] set defaults for pdf_csv.py")
