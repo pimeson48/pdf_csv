@@ -138,7 +138,7 @@ print("importing remaining required packages...")
 import os
 import tkinter as tk
 from tkinter import filedialog
-import tabula  # simple wrapper for tabula-java, read tables from PDF into DataFrame
+#import tabula  # simple wrapper for tabula-java, read tables from PDF into DataFrame
 #-----------------------------------------------------------------------------
 
 
@@ -256,10 +256,10 @@ def pdf_csv():
                     csv_path = csv_file() # pick another csv
                     csv_ext = csv_path.lower().endswith('.csv')
 
-    print ("converting pdf to csv...")
-#    print ("testing suppressed pdf to csv conversion!\n")
-    tabula.convert_into(pdf_path, csv_path, output_format="csv", pages="all")
-    print ("pdf to csv conversion complete!\n")
+#    print ("converting pdf to csv...")
+    print ("testing suppressed pdf to csv conversion!\n")
+#    tabula.convert_into(pdf_path, csv_path, output_format="csv", pages="all")
+#    print ("pdf to csv conversion complete!\n")
 
     print ("csv file can be found here: " + csv_path + "\n")
 #     if AorM == 2: # manual
