@@ -121,25 +121,25 @@ def pdf_exists(pdf_path):
 
 
 # -----------------------------------------------------------------------------
-print("installing and importing remaining required packages...")
-for p in PACKAGES:
-    try:
-        install(p)
-    except:
-        import p
-        print(p + " package imported")
-print(str(len(PACKAGES)) + " packages installed! \n")
+# print("installing and importing remaining required packages...")
+# for p in PACKAGES:
+#     try:
+#         install(p)
+#     except:
+#         import p
+#         print(p + " package imported")
+# print(str(len(PACKAGES)) + " packages installed! \n")
 # -----------------------------------------------------------------------------
 
 
-# -----------------------------------------------------------------------------
-# import required packages
-#print("importing remaining required packages...")
-#import os
-#import tkinter as tk
-#from tkinter import filedialog
-#import tabula  # simple wrapper for tabula-java, read tables from PDF into DataFrame
-# -----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
+import required packages
+print("importing remaining required packages...")
+import os
+import tkinter as tk
+from tkinter import filedialog
+import tabula  # simple wrapper for tabula-java, read tables from PDF into DataFrame
+#-----------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------
