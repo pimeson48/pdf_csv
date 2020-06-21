@@ -13,7 +13,7 @@ print("[-+-] import a pdf and convert it to a csv")
 print("[-+-] importing required packages for pdf_csv.py...")
 import os
 import tabula  # simple wrapper for tabula-java, read tables from PDF into csv
-from modules.defaults import df # local module
+#from modules.defaults import df # local module
 print("[-+-] pdf_csv.py packages imported! \n")
 #-----------------------------------------------------------------------------
 
