@@ -3,273 +3,73 @@
 #
 # Version 1.0 by JC on June 18, 2020
 # Version 1.1 by JC on June 20, 2020
+# Version 1.2 by JC on June 21, 2020
 # -----------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------
 # import required packages that must be done before FUNCTIONS are created
-print("importing required packages: subprocess & sys...")
-import subprocess
-import sys
-
-# list of packages that the script will install, if not already
-# update list to include additional required packages
-PACKAGES = ["os", "tkinter", "tabula"]
-# -----------------------------------------------------------------------------
-
-
-# -----------------------------------------------------------------------------
-# *** FUNCTIONS ***
-# -----------------------------------------------------------------------------
-# if package not imported then install and import package
-print("creating installed(package) function...")
-def install(package):
-    try:
-        print("importing package " + package + "...")
-        import package
-    except ImportError as e:
-        print(package + " not found!")
-        print("installing " + package + "...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-        print("importing " + package + "...")
-        import package
-        print(package + " installed and imported! \n")
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
-# open file explorer to view file
-def startfile(filename):
-    try:
-        os.startfile(filename)
-    except:
-        subprocess.Popen(['xdg-open', filename])
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
-# open file dialogue window to select pdf file
-def pdf_file():
-    root = tk.Tk()
-    root.withdraw()
-    pf = filedialog.askopenfilename(title='select the pdf import file')
-    return pf
-
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
-# open file dialogue window to select csv file
-def csv_file():
-    root = tk.Tk()
-    root.withdraw()
-    cf = filedialog.askopenfilename(title='select the csv output file')
-    return cf
-# -----------------------------------------------------------------------------
-
-
-# -----------------------------------------------------------------------------
-# automatic or manual script mode
-def choice(default):
-    # set constants
-    auto_num = 1
-    man_num = 2
-    auto_name = "automatic"
-    man_name = "manual"
-    auto_d = "Automatic (1)"
-    man_d = "Manual (2)"
-
-    if default == True:
-        # Calls for an infinite loop that keeps executing until an exception occurs
-        while True:
-            try:
-                AorM = int(input(auto_d + " or " + man_d + "  "))
-
-            # If something else that is not the string version of a number is introduced, the ValueError exception will be called.
-            except ValueError:
-                # The cycle will go on until validation
-                print("Error! This is not " + auto_d + " or " + man_d + ". Try again.")
-
-            # When successfully converted to an integer, the loop will end.
-            else:
-                if AorM == auto_num:
-                    AorM_name = auto_name
-                elif AorM == man_num:
-                    AorM_name = man_name
-                break
-    else:
-        # manual only as default pdf bank report not available
-        AorM = man_num
-        AorM_name = man_name
-
-    print(AorM_name + " script mode selected \n")
-    return AorM
-# -----------------------------------------------------------------------------
-
-
-# -----------------------------------------------------------------------------
-# check if pdf file exists at default location
-def pdf_exists(pdf_path):
-    try:
-        open(pdf_path, "r")
-        default = True
-        print ("found pdf at default location! \n")
-    except IOError:
-        print ("did not find default pdf! \n")
-        default = False
-    return default
-# -----------------------------------------------------------------------------
-# *** FUNCTIONS END ***
-# -----------------------------------------------------------------------------
-
-
-# -----------------------------------------------------------------------------
-# print("installing and importing remaining required packages...")
-# for p in PACKAGES:
-#     try:
-#         install(p)
-#     except:
-#         import p
-#         print(p + " package imported")
-# print(str(len(PACKAGES)) + " packages installed! \n")
-# -----------------------------------------------------------------------------
-
-
-#-----------------------------------------------------------------------------
-# import required packages
-print("importing remaining required packages...")
+print("[-+-] importing required packages...")
 import os
-import tkinter as tk
-from tkinter import filedialog
 #import tabula  # simple wrapper for tabula-java, read tables from PDF into DataFrame
+print("[-+-] packages imported!")
 #-----------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------
 # convert pdf to csv
 def pdf_csv():
-    print ("starting pdf_csv.py...")
-    print ("Purpose: script will import a pdf and convert it to a csv file")
-    print ("Optional (manual mode only): csv output file can be moved to alternate destination folder")
-    print ("Modes: automatic mode runs with no user input while manual allows edits to pdf and csv locations \n")
+    print("[-+-] starting pdf_csv.py...")
+    print("[-+-] Purpose: script will import a pdf and convert it to a csv file \n")
 
-    # default filenames
-    print ("default file names:")
+    print("[-+-] default filenames:")
     pdf = "Bank_Report.pdf"
     csv = "Bank_Report.csv"
     print (pdf)
     print (csv + "\n")
-    # default file locations
+
+    print("[-+-] default directory:")
     pdf_loc = os.getcwd()
     csv_loc = pdf_loc
-    print ("default file locations:")
     print (pdf_loc)
     print (csv_loc + "\n")
-    # default file paths
+
+    print("[-+-] default file paths:")
     pdf_path = os.path.join(pdf_loc, pdf)
     csv_path = os.path.join(csv_loc, csv)
-    print ("default file paths:")
     print (pdf_path)
     print (csv_path + "\n")
 
-    # check if pdf exists at the default file path
-    print ("checking if pdf at default location...")
-    default = pdf_exists(pdf_path)
-
     # check if a pdf exists at the default file path
     # TO DO create a loop to go through all pdfs and ask for user to select
-    print("looking for another pdf...")
+    print("[-+-] looking for another pdf...")
     arr_pdf = [pdf_loc for pdf_loc in os.listdir() if pdf_loc.endswith(".pdf")]
     if len(arr_pdf) == 1:
-        pdf = arr_pdf[0]
-        print("pdf found!")
-        print("pdf filename: " + pdf + "\n")
-        pdf_path = os.path.join(pdf_loc, pdf)
-        default = True
+        print("[-+-] pdf found: " + arr_pdf[0] + "\n")
+        pdf_path = os.path.join(pdf_loc, arr_pdf[0])
     else:
-        print("pdf cannot be found, will need to be manually selected!")
-
-    #print ("selecting script mode...")
-    # choose automatic or manual script modes
-    #AorM = choice(default)
-    if default == True:
-        AorM = 1 # automatic
-    else:
-        AorM = 2 # manual
-
-    if AorM == 1: # automatic
-        # check if csv exists at the default file path
-        # if csv does not exist create a blank file at the default path
-        # required for automatic script mode to function
-        try:
-            print ("checking if csv at default location...")
-            open(csv_path, "r")
-            print ("csv found at default location!")
-        except IOError:
-            print ("did not find csv at default file path!")
-            print ("creating a blank csv Bank Report file...\n")
-            open(csv_path, "w")
-        print ("automatic mode selected! \n")
-        print ("pdf and csv files selected:")
-        print (pdf_path)
-        print (csv_path)
-        print ("reminder: csv will be overwritten! \n")
-    else:
-        print ("automatic mode disabled, forcing manual...")
-        print ("manual mode selected! \n")
-        print ("select pdf import file...")
-        pdf_path = pdf_file()
-
-        # True if pdf actually selected
-        pdf_ext = pdf_path.lower().endswith('.pdf')
-
-        while True:
-            if os.path.isfile(pdf_path) == True and pdf_ext == True:
-                print ("pdf_path: " + pdf_path)
-                break
-            else:
-                print ("pdf not selected, choose a pdf file \n")
-                pdf_path = pdf_file() # pick another pdf
-                pdf_ext = pdf_path.lower().endswith('.pdf')
-
-        print ("select csv output file...")
-        csv_choice = input ("use default csv file? y or n  ")
-
-        if csv_choice == "y":
-            try:
-                open(csv_path, "r")
-                print ("found csv at default location!")
-                print ("csv will be overwritten!\n")
-            except IOError:
-                print ("did not find csv at default file path!")
-                print ("creating a blank csv Bank Report file...\n")
-                open(csv_path, "w")
-        else:
-            csv_path = csv_file()
-
-            # True if pdf actually selected
-            csv_ext = csv_path.lower().endswith('.csv')
-
-            while True:
-                if os.path.isfile(csv_path) == True and csv_ext == True:
-                    print ("csv_path: " + csv_path + "\n")
-                    break
-                else:
-                    print ("csv not selected, choose a csv file")
-                    csv_path = csv_file() # pick another csv
-                    csv_ext = csv_path.lower().endswith('.csv')
+        print("[-+-] pdf cannot be found, exiting script!")
+        
+    # check if csv exists at the default file path
+    # if csv does not exist create a blank file at the default path
+    # required for automatic script mode to function
+    try:
+        print("[-+-] checking if csv at default location...")
+        open(csv_path, "r")
+        print("[-+-] csv found: " + csv + "\n")
+    except IOError:
+        print("[-+-] did not find csv at default file path!")
+        print("[-+-] creating a blank csv file: " + csv + "... \n")
+        open(csv_path, "w")
 
 #    print ("converting pdf to csv...")
-    print ("testing suppressed pdf to csv conversion!\n")
+    print("[-+-] pdf to csv conversion suppressed! \n")
 #    tabula.convert_into(pdf_path, csv_path, output_format="csv", pages="all")
 #    print ("pdf to csv conversion complete!\n")
 
-    print ("csv file can be found here: " + csv_path + "\n")
-#     if AorM == 2: # manual
-#         print ("opening csv folder...\n")
-#         csv_loc = os.path.dirname(csv_path)
-#         startfile(csv_loc)
-#     else:
-#         print ("automatic mode suppressed opening csv location!\n")
+    print("[-+-] csv file can be found here: " + csv_path + "\n")
 
-    print ("finished pdf_csv.py successfully!")
+    print("[-+-] finished pdf_csv.py successfully!")
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
